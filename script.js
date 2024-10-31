@@ -43,9 +43,14 @@ function init() {
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
   scene.add(ambientLight);
 
-  const pointLight = new THREE.PointLight(0xffffff, 1);
+  const pointLight = new THREE.PointLight(0xffffff, 0.6);
   pointLight.position.set(5, 5, 5);
   scene.add(pointLight);
+
+  // Legg til et ekstra mykt lys fra motsatt side
+  const secondaryLight = new THREE.PointLight(0xffffff, 0.3);
+  secondaryLight.position.set(-5, 3, -5);
+  scene.add(secondaryLight);
 
   // Lag pyramiden
   createPyramid();
@@ -120,9 +125,9 @@ function createPyramid() {
 
   // Material med phong shading
   const material = new THREE.MeshPhongMaterial({
-    color: 0x00ff00,
-    specular: 0x666666,
-    shininess: 30,
+    color: 0xff1493,
+    specular: 0x222222,
+    shininess: 10,
     side: THREE.DoubleSide,
   });
 
