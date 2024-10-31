@@ -3,9 +3,19 @@ let scene, camera, renderer, pyramid, controls, grid;
 
 // Konfigurasjon for rotasjon
 const rotationConfig = {
-  xSpeed: 0.01,
-  ySpeed: 0.01,
-  zSpeed: 0.01,
+  xSpeed: 0,
+  ySpeed: 0,
+  zSpeed: 0,
+  resetRotation: function () {
+    this.xSpeed = 0;
+    this.ySpeed = 0;
+    this.zSpeed = 0;
+    if (pyramid) {
+      pyramid.rotation.x = 0;
+      pyramid.rotation.y = 0;
+      pyramid.rotation.z = 0;
+    }
+  },
 };
 
 // Initialisering
@@ -128,6 +138,9 @@ function setupGUI() {
   rotationFolder.add(rotationConfig, "xSpeed", -0.1, 0.1).name("X-akse");
   rotationFolder.add(rotationConfig, "ySpeed", -0.1, 0.1).name("Y-akse");
   rotationFolder.add(rotationConfig, "zSpeed", -0.1, 0.1).name("Z-akse");
+  rotationFolder
+    .add(rotationConfig, "resetRotation")
+    .name("Nullstill rotasjon");
   rotationFolder.open();
 }
 
